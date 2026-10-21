@@ -6,7 +6,7 @@
 
 | 字段 | 必填 | 说明 |
 |---|---|---|
-| `id` | 是 | `<topicId>_qN`，如 `cnm_050_q1`；`_q1` 题干以 `topics.json` 的 `diagnostic_question` 开头 |
+| `id` | 是 | `<topicId>_qN`，如 `cnm_052_q1`；`_q1` 题干与 `topics.json` 的 `diagnostic_question` 一致 |
 | `topicId` | 是 | 知识点 id（正式点） |
 | `difficulty` | 是 | `basic` 基础（课本例题水平一步计算）、`standard` 标准（2步）、`advanced` 提高（多步或易错） |
 | `type` | 是 | `numeric` 数值题（答案可解析为数）、`choice` 选择题、`short` 短答（带单位/时间的非纯数字答案） |
@@ -21,7 +21,7 @@
 ## 2. 统计
 
 - 总数 **628 题**，覆盖 157 个正式点，每点 4 题。
-- 按 type：numeric 382，choice 185，short 61；numeric+choice 占 90.3%（≥60% 达标）。
+- 按 type：numeric 425，choice 197，short 6；numeric+choice 占 99.0%（≥60% 达标）。
 - 按 difficulty：basic 314，standard 157，advanced 157；每点含 basic 与 standard。
 - choice 正确选项分布大致均匀（A/B/C/D 各 40-50 题）。
 
@@ -38,9 +38,9 @@ numeric 与 choice 题可带 `verify` 表达式，脚本在受限环境（AST �
 
 | 项 | 数量 |
 |---|---|
-| auto_verified | 382 |
+| auto_verified | 425 |
 | mismatch | 0 |
-| unverifiable | 246（choice 185 + short 61） |
+| unverifiable | 203（choice 197 + short 6） |
 
 `mismatch 0` 表示有 `verify` 的题目均通过；`unverifiable` 为无 `verify` 的题目（主要为干扰项为文字的选择题与带单位/时间的 short 题），依赖人工审核或后续第二遍独立复核。
 

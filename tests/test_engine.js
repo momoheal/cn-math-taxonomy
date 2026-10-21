@@ -187,7 +187,7 @@ test('多个根因：路径含根因到目标之间所有未掌握点，拓扑�
   assert.deepStrictEqual(sum.path.filter((p) => p.isRoot).map((p) => p.id).sort(), ['D', 'E']);
 });
 
-test('外部（小学）节点不出题；根因的外部先修单独标出', () => {
+test('外部（学前）节点不出题；根因的外部先修单独标出', () => {
   const [s, asked] = run(E.createSession(G, ['T']), { T: 'wrong', C: 'wrong', E: 'wrong', F: 'wrong', D: 'wrong', B: 'wrong' });
   assert.ok(!asked.includes('X'));
   const sum = E.summarize(G, s);
@@ -609,7 +609,7 @@ function bfsAncestors(id) {
   return seen;
 }
 
-test('数据可加载：169 个知识点，188 条边；每个正式知识点有诊断题', () => {
+test('数据可加载：169 个知识点，191 条边；每个正式知识点有诊断题', () => {
   assert.strictEqual(topics.length, RG.topics.length);
   assert.ok(formal.every((t) => E.isTestable(RG, t.id)));
   assert.ok(topics.filter((t) => t.external).every((t) => !E.isTestable(RG, t.id)));
@@ -633,7 +633,7 @@ test('真实数据：先修子图含外部节点，拓扑序合法（全部目�
   assert.ok(sawExternal);
 });
 
-test('真实数据：cnm_050（大家来做乘法）——首问目标；答错后 hard 先修在前', () => {
+test('真实数据：cnm_050（正方体与长方体的初步认识）——首问目标；答错后 hard 先修在前', () => {
   let s = E.createSession(RG, ['cnm_050']);
   assert.strictEqual(E.nextQuestion(RG, s), 'cnm_050');
   s = E.applyAnswer(RG, s, 'cnm_050', 'wrong');
@@ -646,7 +646,7 @@ test('真实数据：答对目标即跳过全部祖先', () => {
   const s = E.applyAnswer(RG, E.createSession(RG, ['cnm_050']), 'cnm_050', 'correct');
   assert.strictEqual(E.nextQuestion(RG, s), null);
   const anc = bfsAncestors('cnm_050');
-  assert.ok(anc.size > 5);
+  assert.ok(anc.size > 2);
   anc.forEach((id) => assert.strictEqual(E.statusOf(s, id), 'mastered', id));
 });
 

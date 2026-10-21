@@ -173,7 +173,7 @@ function renderList() {
     }
     const li = el("li", {class:"item" + (t.id === selected ? " sel" : ""), "data-id":t.id, onclick:() => select(t.id, true)},
       el("span", {class:"nm", text:t.name}),
-      el("span", {class:"meta", text: t.external ? t.domain : t.domain + " · " + (t.chapter || "").replace(/^.. /, "")}));
+      el("span", {class:"meta", text: t.external ? t.domain : t.domain + " · " + (t.chapter || "").replace(/^\S+\s+/, "")}));
     ul.append(li);
   }
   $("#count").textContent = "显示 " + items.length + " / " + topics.length;

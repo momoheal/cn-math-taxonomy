@@ -1,9 +1,21 @@
 [
   {
+    "topicId": "cnm_001",
+    "prerequisiteId": "cnm_ext_002",
+    "strength": "hard",
+    "reason": "“入学适应·数学观察”的学习建立在学前“简单分类与比较”的基础上"
+  },
+  {
     "topicId": "cnm_002",
     "prerequisiteId": "cnm_001",
     "strength": "hard",
     "reason": "学习“认识立体图形”需要先掌握“入学适应·数学观察”的基础"
+  },
+  {
+    "topicId": "cnm_002",
+    "prerequisiteId": "cnm_ext_004",
+    "strength": "soft",
+    "reason": "学前“立体图形直观”为“认识立体图形”提供了直观经验"
   },
   {
     "topicId": "cnm_003",
@@ -12,10 +24,22 @@
     "reason": "学习“认识平面图形”需要先掌握“认识立体图形”的基础"
   },
   {
+    "topicId": "cnm_003",
+    "prerequisiteId": "cnm_ext_005",
+    "strength": "soft",
+    "reason": "学前“平面图形直观”为“认识平面图形”提供了直观经验"
+  },
+  {
     "topicId": "cnm_004",
     "prerequisiteId": "cnm_001",
     "strength": "hard",
     "reason": "学习“1-5的认识与书写”需要先掌握“入学适应·数学观察”的基础"
+  },
+  {
+    "topicId": "cnm_004",
+    "prerequisiteId": "cnm_ext_001",
+    "strength": "soft",
+    "reason": "学前“唱数与点数（1-20）”为“1-5的认识与书写”提供了直观经验"
   },
   {
     "topicId": "cnm_005",
@@ -28,6 +52,12 @@
     "prerequisiteId": "cnm_004",
     "strength": "hard",
     "reason": "学习“分与合初步（2-7的分合）”需要先掌握“1-5的认识与书写”的基础"
+  },
+  {
+    "topicId": "cnm_006",
+    "prerequisiteId": "cnm_ext_010",
+    "strength": "soft",
+    "reason": "学前“10以内分合游戏”为“分与合初步（2-7的分合）”提供了直观经验"
   },
   {
     "topicId": "cnm_007",
@@ -66,6 +96,12 @@
     "reason": "学习“加法的含义与计算（10以内）”需要先掌握“数射线的认识与应用”的基础"
   },
   {
+    "topicId": "cnm_011",
+    "prerequisiteId": "cnm_ext_011",
+    "strength": "soft",
+    "reason": "学前“简单加减故事”为“加法的含义与计算（10以内）”提供了直观经验"
+  },
+  {
     "topicId": "cnm_012",
     "prerequisiteId": "cnm_011",
     "strength": "hard",
@@ -96,16 +132,22 @@
     "reason": "学习“20以内数的排列与大小比较”需要先掌握“11-20的认识与组成（十几就是十和几）”的基础"
   },
   {
-    "topicId": "cnm_017",
-    "prerequisiteId": "cnm_015",
-    "strength": "hard",
-    "reason": "学习“20以内不进位加法与不退位减法”需要先掌握“11-20的认识与组成（十几就是十和几）”的基础"
+    "topicId": "cnm_016",
+    "prerequisiteId": "cnm_ext_012",
+    "strength": "soft",
+    "reason": "学前“规律与推理游戏”为“20以内数的排列与大小比较”提供了直观经验"
   },
   {
     "topicId": "cnm_017",
     "prerequisiteId": "cnm_011",
     "strength": "hard",
     "reason": "学习“20以内不进位加法与不退位减法”需要先掌握“加法的含义与计算（10以内）”的基础"
+  },
+  {
+    "topicId": "cnm_017",
+    "prerequisiteId": "cnm_015",
+    "strength": "hard",
+    "reason": "学习“20以内不进位加法与不退位减法”需要先掌握“11-20的认识与组成（十几就是十和几）”的基础"
   },
   {
     "topicId": "cnm_018",
@@ -144,28 +186,40 @@
     "reason": "学习“百以内数的大小比较”需要先掌握“百以内数的表示与位值（位值图）”的基础"
   },
   {
+    "topicId": "cnm_023",
+    "prerequisiteId": "cnm_ext_007",
+    "strength": "soft",
+    "reason": "学前“时间与钟表直观”为“百以内数的大小比较”提供了直观经验"
+  },
+  {
     "topicId": "cnm_024",
     "prerequisiteId": "cnm_022",
     "strength": "hard",
     "reason": "学习“认识人民币（元·角·分）”需要先掌握“百以内数的表示与位值（位值图）”的基础"
   },
   {
-    "topicId": "cnm_025",
-    "prerequisiteId": "cnm_002",
-    "strength": "hard",
-    "reason": "学习“认识钟表·几时与几时半”需要先掌握“认识立体图形”的基础"
+    "topicId": "cnm_024",
+    "prerequisiteId": "cnm_ext_008",
+    "strength": "soft",
+    "reason": "学前“人民币与购物直观”为“认识人民币（元·角·分）”提供了直观经验"
   },
   {
-    "topicId": "cnm_026",
-    "prerequisiteId": "cnm_023",
+    "topicId": "cnm_025",
+    "prerequisiteId": "cnm_007",
     "strength": "hard",
-    "reason": "学习“两位数加减整十数”需要先掌握“百以内数的大小比较”的基础"
+    "reason": "认读几时、几时半需要先认识1～12各数"
   },
   {
     "topicId": "cnm_026",
     "prerequisiteId": "cnm_011",
     "strength": "hard",
     "reason": "学习“两位数加减整十数”需要先掌握“加法的含义与计算（10以内）”的基础"
+  },
+  {
+    "topicId": "cnm_026",
+    "prerequisiteId": "cnm_023",
+    "strength": "hard",
+    "reason": "学习“两位数加减整十数”需要先掌握“百以内数的大小比较”的基础"
   },
   {
     "topicId": "cnm_027",
@@ -211,15 +265,15 @@
   },
   {
     "topicId": "cnm_033",
-    "prerequisiteId": "cnm_030",
-    "strength": "hard",
-    "reason": "学习“百数表与加减法复习·交换”需要先掌握“连加·连减与加减混合（百以内）”的基础"
-  },
-  {
-    "topicId": "cnm_033",
     "prerequisiteId": "cnm_023",
     "strength": "hard",
     "reason": "学习“百数表与加减法复习·交换”需要先掌握“百以内数的大小比较”的基础"
+  },
+  {
+    "topicId": "cnm_033",
+    "prerequisiteId": "cnm_030",
+    "strength": "hard",
+    "reason": "学习“百数表与加减法复习·交换”需要先掌握“连加·连减与加减混合（百以内）”的基础"
   },
   {
     "topicId": "cnm_034",
@@ -319,15 +373,21 @@
   },
   {
     "topicId": "cnm_050",
-    "prerequisiteId": "cnm_049",
+    "prerequisiteId": "cnm_002",
     "strength": "hard",
-    "reason": "学习“正方体与长方体的初步认识”需要先掌握“角与直角的认识”的基础"
+    "reason": "认识正方体、长方体需要先有立体图形的直观经验"
   },
   {
     "topicId": "cnm_051",
-    "prerequisiteId": "cnm_050",
+    "prerequisiteId": "cnm_003",
     "strength": "hard",
-    "reason": "学习“长方形与正方形的初步认识”需要先掌握“正方体与长方体的初步认识”的基础"
+    "reason": "认识长方形、正方形需要先认识平面图形"
+  },
+  {
+    "topicId": "cnm_051",
+    "prerequisiteId": "cnm_049",
+    "strength": "soft",
+    "reason": "长方形、正方形的四个角都是直角，需要先认识直角"
   },
   {
     "topicId": "cnm_052",
@@ -445,27 +505,27 @@
   },
   {
     "topicId": "cnm_069",
-    "prerequisiteId": "cnm_057",
-    "strength": "hard",
-    "reason": "学习“万以内数的认识、读写与大小比较”需要先掌握“数射线（千）与位值图上的游戏”的基础"
-  },
-  {
-    "topicId": "cnm_069",
     "prerequisiteId": "cnm_056",
     "strength": "hard",
     "reason": "学习“万以内数的认识、读写与大小比较”需要先掌握“千以内数的认识与表达”的基础"
   },
   {
-    "topicId": "cnm_070",
-    "prerequisiteId": "cnm_069",
+    "topicId": "cnm_069",
+    "prerequisiteId": "cnm_057",
     "strength": "hard",
-    "reason": "学习“巧算（二）与数学广场（列表枚举·七巧板）”需要先掌握“万以内数的认识、读写与大小比较”的基础"
+    "reason": "学习“万以内数的认识、读写与大小比较”需要先掌握“数射线（千）与位值图上的游戏”的基础"
   },
   {
     "topicId": "cnm_070",
     "prerequisiteId": "cnm_054",
     "strength": "hard",
     "reason": "学习“巧算（二）与数学广场（列表枚举·七巧板）”需要先掌握“分拆成几个几与相差多少”的基础"
+  },
+  {
+    "topicId": "cnm_070",
+    "prerequisiteId": "cnm_069",
+    "strength": "hard",
+    "reason": "学习“巧算（二）与数学广场（列表枚举·七巧板）”需要先掌握“万以内数的认识、读写与大小比较”的基础"
   },
   {
     "topicId": "cnm_071",
@@ -475,9 +535,15 @@
   },
   {
     "topicId": "cnm_072",
-    "prerequisiteId": "cnm_055",
+    "prerequisiteId": "cnm_003",
     "strength": "hard",
-    "reason": "学习“正方形组成的图形——多连块”需要先掌握“正方体的展开图”的基础"
+    "reason": "多连块由正方形拼成，需要先认识平面图形"
+  },
+  {
+    "topicId": "cnm_072",
+    "prerequisiteId": "cnm_051",
+    "strength": "soft",
+    "reason": "拼摆多连块需要先认识长方形、正方形的边"
   },
   {
     "topicId": "cnm_073",
@@ -535,33 +601,27 @@
   },
   {
     "topicId": "cnm_082",
-    "prerequisiteId": "cnm_065",
+    "prerequisiteId": "cnm_032",
     "strength": "hard",
-    "reason": "学习“千米与分米的认识（含米与厘米复习）”需要先掌握“克、千克的认识与计算”的基础"
-  },
-  {
-    "topicId": "cnm_083",
-    "prerequisiteId": "cnm_082",
-    "strength": "soft",
-    "reason": "学习“轴对称图形的认识”需要先掌握“千米与分米的认识（含米与厘米复习）”的基础"
+    "reason": "认识千米、分米需要先有长度比较和测量的经验"
   },
   {
     "topicId": "cnm_083",
     "prerequisiteId": "cnm_051",
     "strength": "hard",
-    "reason": "学习“轴对称图形的认识”需要先掌握“长方形与正方形的初步认识”的基础"
-  },
-  {
-    "topicId": "cnm_084",
-    "prerequisiteId": "cnm_068",
-    "strength": "hard",
-    "reason": "学习“三角形的分类（二）与面积初步”需要先掌握“三角形的分类（一）（按角分）”的基础"
+    "reason": "判断轴对称图形需要先认识长方形、正方形的特征"
   },
   {
     "topicId": "cnm_084",
     "prerequisiteId": "cnm_067",
     "strength": "hard",
     "reason": "学习“三角形的分类（二）与面积初步”需要先掌握“角与三角形、四边形的认识”的基础"
+  },
+  {
+    "topicId": "cnm_084",
+    "prerequisiteId": "cnm_068",
+    "strength": "hard",
+    "reason": "学习“三角形的分类（二）与面积初步”需要先掌握“三角形的分类（一）（按角分）”的基础"
   },
   {
     "topicId": "cnm_085",
@@ -607,15 +667,15 @@
   },
   {
     "topicId": "cnm_091",
-    "prerequisiteId": "cnm_090",
-    "strength": "hard",
-    "reason": "学习“整十数与两位数相乘”需要先掌握“速度、时间、路程的数量关系”的基础"
-  },
-  {
-    "topicId": "cnm_091",
     "prerequisiteId": "cnm_074",
     "strength": "hard",
     "reason": "学习“整十数与两位数相乘”需要先掌握“一位数与两位数相乘（含口算与竖式）”的基础"
+  },
+  {
+    "topicId": "cnm_091",
+    "prerequisiteId": "cnm_090",
+    "strength": "hard",
+    "reason": "学习“整十数与两位数相乘”需要先掌握“速度、时间、路程的数量关系”的基础"
   },
   {
     "topicId": "cnm_092",
@@ -673,9 +733,15 @@
   },
   {
     "topicId": "cnm_101",
-    "prerequisiteId": "cnm_085",
+    "prerequisiteId": "cnm_032",
     "strength": "hard",
-    "reason": "学习“周长与长方形·正方形的周长”需要先掌握“长方形与正方形的面积与平方米”的基础"
+    "reason": "认识周长需要先有长度测量和线段的认识"
+  },
+  {
+    "topicId": "cnm_101",
+    "prerequisiteId": "cnm_085",
+    "strength": "soft",
+    "reason": "学习周长时要与面积区分，需要先认识面积"
   },
   {
     "topicId": "cnm_102",
@@ -697,15 +763,15 @@
   },
   {
     "topicId": "cnm_104",
-    "prerequisiteId": "cnm_103",
-    "strength": "hard",
-    "reason": "学习“乘法与除法的关系与复习用两位数乘除”需要先掌握“加法与减法的关系（互逆）”的基础"
-  },
-  {
-    "topicId": "cnm_104",
     "prerequisiteId": "cnm_096",
     "strength": "hard",
     "reason": "学习“乘法与除法的关系与复习用两位数乘除”需要先掌握“两位数除多位数”的基础"
+  },
+  {
+    "topicId": "cnm_104",
+    "prerequisiteId": "cnm_103",
+    "strength": "hard",
+    "reason": "学习“乘法与除法的关系与复习用两位数乘除”需要先掌握“加法与减法的关系（互逆）”的基础"
   },
   {
     "topicId": "cnm_105",
@@ -721,15 +787,15 @@
   },
   {
     "topicId": "cnm_107",
-    "prerequisiteId": "cnm_082",
-    "strength": "soft",
-    "reason": "学习“平方千米·吨的认识与毫升·升”需要先掌握“千米与分米的认识（含米与厘米复习）”的基础"
-  },
-  {
-    "topicId": "cnm_107",
     "prerequisiteId": "cnm_065",
     "strength": "hard",
     "reason": "学习“平方千米·吨的认识与毫升·升”需要先掌握“克、千克的认识与计算”的基础"
+  },
+  {
+    "topicId": "cnm_107",
+    "prerequisiteId": "cnm_082",
+    "strength": "soft",
+    "reason": "学习“平方千米·吨的认识与毫升·升”需要先掌握“千米与分米的认识（含米与厘米复习）”的基础"
   },
   {
     "topicId": "cnm_108",
@@ -769,15 +835,15 @@
   },
   {
     "topicId": "cnm_113",
-    "prerequisiteId": "cnm_050",
+    "prerequisiteId": "cnm_003",
     "strength": "hard",
-    "reason": "学习“圆的初步认识（圆心·半径·直径）”需要先掌握“正方体与长方体的初步认识”的基础"
+    "reason": "认识圆需要先有平面图形的认识经验"
   },
   {
     "topicId": "cnm_114",
     "prerequisiteId": "cnm_032",
     "strength": "hard",
-    "reason": "学习“线段·射线与直线的认识”需要先掌握“长度比较·度量与线段”的基础"
+    "reason": "认识线段、射线、直线需要先有长度测量和线段的经验"
   },
   {
     "topicId": "cnm_115",
@@ -793,15 +859,15 @@
   },
   {
     "topicId": "cnm_116",
-    "prerequisiteId": "cnm_106",
-    "strength": "hard",
-    "reason": "学习“整理与提高（大数与网格估测）”需要先掌握“四舍五入法与凑整”的基础"
+    "prerequisiteId": "cnm_089",
+    "strength": "soft",
+    "reason": "网格估测需要先有组合图形面积的经验"
   },
   {
     "topicId": "cnm_116",
-    "prerequisiteId": "cnm_115",
+    "prerequisiteId": "cnm_105",
     "strength": "hard",
-    "reason": "学习“整理与提高（大数与网格估测）”需要先掌握“角的度量与角的计算（含相等的角）”的基础"
+    "reason": "大数的整理与提高需要先认识万级、亿级的数"
   },
   {
     "topicId": "cnm_117",
@@ -871,15 +937,15 @@
   },
   {
     "topicId": "cnm_128",
-    "prerequisiteId": "cnm_122",
-    "strength": "hard",
-    "reason": "学习“小数乘整数”需要先掌握“小数加减法与小数加减法应用”的基础"
-  },
-  {
-    "topicId": "cnm_128",
     "prerequisiteId": "cnm_104",
     "strength": "soft",
     "reason": "学习“小数乘整数”需要先掌握“乘法与除法的关系与复习用两位数乘除”的基础"
+  },
+  {
+    "topicId": "cnm_128",
+    "prerequisiteId": "cnm_122",
+    "strength": "hard",
+    "reason": "学习“小数乘整数”需要先掌握“小数加减法与小数加减法应用”的基础"
   },
   {
     "topicId": "cnm_129",
@@ -913,9 +979,9 @@
   },
   {
     "topicId": "cnm_134",
-    "prerequisiteId": "cnm_123",
+    "prerequisiteId": "cnm_104",
     "strength": "hard",
-    "reason": "学习“平均数的认识与计算·应用”需要先掌握“折线统计图的认识与画法”的基础"
+    "reason": "求平均数要用除法，需要先掌握乘除关系和除法计算"
   },
   {
     "topicId": "cnm_135",
@@ -961,15 +1027,15 @@
   },
   {
     "topicId": "cnm_142",
-    "prerequisiteId": "cnm_133",
-    "strength": "hard",
-    "reason": "学习“小数四则混合运算与水·电·天然气费用应用”需要先掌握“循环小数与积·商的凑整”的基础"
-  },
-  {
-    "topicId": "cnm_142",
     "prerequisiteId": "cnm_130",
     "strength": "hard",
     "reason": "学习“小数四则混合运算与水·电·天然气费用应用”需要先掌握“连乘·乘加·乘减与整数运算律推广到小数”的基础"
+  },
+  {
+    "topicId": "cnm_142",
+    "prerequisiteId": "cnm_133",
+    "strength": "hard",
+    "reason": "学习“小数四则混合运算与水·电·天然气费用应用”需要先掌握“循环小数与积·商的凑整”的基础"
   },
   {
     "topicId": "cnm_143",
@@ -985,15 +1051,15 @@
   },
   {
     "topicId": "cnm_145",
-    "prerequisiteId": "cnm_144",
-    "strength": "hard",
-    "reason": "学习“方程的复习”需要先掌握“小数的四则混合运算与自然数”的基础"
-  },
-  {
-    "topicId": "cnm_145",
     "prerequisiteId": "cnm_137",
     "strength": "hard",
     "reason": "学习“方程的复习”需要先掌握“方程的意义与解简易方程”的基础"
+  },
+  {
+    "topicId": "cnm_145",
+    "prerequisiteId": "cnm_144",
+    "strength": "hard",
+    "reason": "学习“方程的复习”需要先掌握“小数的四则混合运算与自然数”的基础"
   },
   {
     "topicId": "cnm_146",
@@ -1003,9 +1069,9 @@
   },
   {
     "topicId": "cnm_147",
-    "prerequisiteId": "cnm_144",
+    "prerequisiteId": "cnm_069",
     "strength": "hard",
-    "reason": "学习“正数与负数的初步认识”需要先掌握“小数的四则混合运算与自然数”的基础"
+    "reason": "认识正负数需要先掌握万以内数的顺序和大小比较，才能在数轴上理解0的左右"
   },
   {
     "topicId": "cnm_148",
@@ -1027,15 +1093,21 @@
   },
   {
     "topicId": "cnm_151",
-    "prerequisiteId": "cnm_146",
+    "prerequisiteId": "cnm_088",
+    "strength": "soft",
+    "reason": "认识体积单位需要先有面积单位的经验"
+  },
+  {
+    "topicId": "cnm_152",
+    "prerequisiteId": "cnm_050",
     "strength": "hard",
-    "reason": "学习“体积与容积的认识及体积单位”需要先掌握“面积的估测（不规则图形）”的基础"
+    "reason": "认识长方体、正方体的棱和面需要先有初步认识"
   },
   {
     "topicId": "cnm_152",
     "prerequisiteId": "cnm_151",
-    "strength": "hard",
-    "reason": "学习“长方体与正方体的认识（棱长·特征）”需要先掌握“体积与容积的认识及体积单位”的基础"
+    "strength": "soft",
+    "reason": "认识长方体、正方体时要联系体积与容积"
   },
   {
     "topicId": "cnm_153",
@@ -1045,9 +1117,15 @@
   },
   {
     "topicId": "cnm_154",
-    "prerequisiteId": "cnm_153",
+    "prerequisiteId": "cnm_055",
     "strength": "hard",
-    "reason": "学习“正·长方体展开图与表面积”需要先掌握“长方体·正方体体积与组合体的体积”的基础"
+    "reason": "理解表面积需要先认识正方体展开图"
+  },
+  {
+    "topicId": "cnm_154",
+    "prerequisiteId": "cnm_152",
+    "strength": "hard",
+    "reason": "展开图与表面积需要先认识长方体、正方体的面"
   },
   {
     "topicId": "cnm_155",
@@ -1057,74 +1135,14 @@
   },
   {
     "topicId": "cnm_156",
-    "prerequisiteId": "cnm_048",
-    "strength": "hard",
-    "reason": "学习“可能性的认识与可能性大小”需要先掌握“统计表初步与条形统计图（一）”的基础"
+    "prerequisiteId": "cnm_ext_009",
+    "strength": "soft",
+    "reason": "认识可能性需要先有数据整理和分类的经验"
   },
   {
     "topicId": "cnm_157",
     "prerequisiteId": "cnm_156",
     "strength": "hard",
     "reason": "学习“可能情况的个数与枚举（树状图·列表）”需要先掌握“可能性的认识与可能性大小”的基础"
-  },
-  {
-    "topicId": "cnm_001",
-    "prerequisiteId": "cnm_ext_002",
-    "strength": "hard",
-    "reason": "“入学适应·数学观察”的学习建立在学前“简单分类与比较”的基础上"
-  },
-  {
-    "topicId": "cnm_004",
-    "prerequisiteId": "cnm_ext_001",
-    "strength": "soft",
-    "reason": "学前“唱数与点数（1-20）”为“1-5的认识与书写”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_002",
-    "prerequisiteId": "cnm_ext_004",
-    "strength": "soft",
-    "reason": "学前“立体图形直观”为“认识立体图形”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_003",
-    "prerequisiteId": "cnm_ext_005",
-    "strength": "soft",
-    "reason": "学前“平面图形直观”为“认识平面图形”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_023",
-    "prerequisiteId": "cnm_ext_007",
-    "strength": "soft",
-    "reason": "学前“时间与钟表直观”为“百以内数的大小比较”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_024",
-    "prerequisiteId": "cnm_ext_008",
-    "strength": "soft",
-    "reason": "学前“人民币与购物直观”为“认识人民币（元·角·分）”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_006",
-    "prerequisiteId": "cnm_ext_010",
-    "strength": "soft",
-    "reason": "学前“10以内分合游戏”为“分与合初步（2-7的分合）”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_011",
-    "prerequisiteId": "cnm_ext_011",
-    "strength": "soft",
-    "reason": "学前“简单加减故事”为“加法的含义与计算（10以内）”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_016",
-    "prerequisiteId": "cnm_ext_012",
-    "strength": "soft",
-    "reason": "学前“规律与推理游戏”为“20以内数的排列与大小比较”提供了直观经验"
-  },
-  {
-    "topicId": "cnm_114",
-    "prerequisiteId": "cnm_113",
-    "strength": "soft",
-    "reason": "认识线段、射线与直线需要以圆的初步认识中对曲线与直线的区分作铺垫"
   }
 ]
