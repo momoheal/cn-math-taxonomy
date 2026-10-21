@@ -636,7 +636,7 @@
       (D.graph.byId[p.id].standards || []).forEach(function (sd) { stdIds.add(sd.id); });
     });
     const out = {
-      tool: 'cn-math-taxonomy/diagnose', version: 2, generatedAt: new Date().toISOString(),
+      tool: 'studyhard/diagnose', version: 2, generatedAt: new Date().toISOString(),
       note: '自动判题是近似的，以参考答案为准；数据为 AI 生成的草稿。',
       label: sessionMeta.label,
       targets: session.targets.map(brief),

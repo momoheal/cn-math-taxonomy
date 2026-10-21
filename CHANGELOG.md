@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-21 — 仓库迁移至 momoheal/studyhard
+
+- 独立仓库落地：<https://github.com/momoheal/studyhard>，主分支 `main` 即本项目完整历史（原 fork 自 `momoheal/cn-math-taxonomy`，现作为独立项目维护）。
+- 新增 `.nojekyll`，使 GitHub Pages 发布时不忽略 `_builder/` 等以下划线开头的目录。
+- README 增加「仓库与在线访问」章节（Pages 地址、开启方式、本地 `http.server` 说明）。`README` 与 `CHANGELOG` 中指向原仓库作为“本仓库”的表述改为上游来源表述。
+- 许可证说明补充迁移细节：新仓库创建时 GitHub 自动生成的 Apache-2.0 `LICENSE` 已被覆盖为 CC BY-NC 4.0。
+
 ## 2026-10-21 — 沪教版小学数学辅导版（1-5年级·五四学制）首版
 
 从原 [中国初中数学知识图谱（七-九年级，人教版）](https://github.com/momoheal/cn-math-taxonomy) fork 并重做内容域，升级为“知识图谱诊断 + 课本同步辅导”体系。

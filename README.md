@@ -1,8 +1,20 @@
 # 沪教版小学数学（1-5年级·五四学制）知识图谱与同步辅导 · 辅导版
 
-用「知识点节点 + 先修边」有向无环图（DAG）描述沪教版小学数学（一年级上至五年级下，共 10 册）的知识结构，严格对齐课本目录，并在每个知识点上附加**课本同步精讲四件套**与**配套题库**，配合自适应诊断工具实现“学—练—测—补”闭环。数据格式与设计思路参考 [Marble os-taxonomy](https://github.com/withmarbleapp/os-taxonomy) 与本仓库原初中版 [momoheal/cn-math-taxonomy](https://github.com/momoheal/cn-math-taxonomy) 的 `topics + dependencies + standards + questions + diagnose` 体系。
+用「知识点节点 + 先修边」有向无环图（DAG）描述沪教版小学数学（一年级上至五年级下，共 10 册）的知识结构，严格对齐课本目录，并在每个知识点上附加**课本同步精讲四件套**与**配套题库**，配合自适应诊断工具实现“学—练—测—补”闭环。数据格式与设计思路源自 [Marble os-taxonomy](https://github.com/withmarbleapp/os-taxonomy)，并在初中版 [momoheal/cn-math-taxonomy](https://github.com/momoheal/cn-math-taxonomy) 的 `topics + dependencies + standards + questions + diagnose` 底座上整体重做内容域。**本仓库地址：<https://github.com/momoheal/studyhard>。**
 
 > **状态声明：AI 生成的初稿，未经任何一线教师审核。** 知识点的拆分粒度、掌握标准、诊断题答案、辅导讲解，尤其是**先修关系（hard/soft 强度与是否存在）与辅导建议，都需要沪教版小学数学教师审核后才能用于教学。** 题库答案虽经机器核验，但非权威。
+
+## 0. 仓库与在线访问
+
+| 入口 | 地址 |
+|---|---|
+| 代码仓库 | <https://github.com/momoheal/studyhard> |
+| 在线浏览页（知识图谱 + 辅导卡） | <https://momoheal.github.io/studyhard/> |
+| 在线诊断小工具 | <https://momoheal.github.io/studyhard/diagnose/> |
+
+页面全部为纯静态文件（无构建步骤、无后端）。在线访问需在仓库 **Settings → Pages** 中把 Source 设为 `Deploy from a branch`、Branch 选 `main` / `/ (root)`，仓库根目录的 `.nojekyll` 会让 `_builder/` 等以下划线开头的目录也能正常发布。
+
+本地使用同样不需要构建：克隆后在仓库根目录执行 `python3 -m http.server 8000`，打开 <http://localhost:8000/>；注意页面通过 `fetch` 读取 `data/*.json`，**直接双击 `index.html`（`file://`）会因浏览器同源策略读不到数据**。
 
 ## 1. 数据来源与对齐依据
 
@@ -162,8 +174,10 @@ node tests/test_engine.js
 
 ## 8. 许可证
 
-本项目采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.zh-hans) 授权，详见 [LICENSE](LICENSE)。商用需联系作者。
+本项目（数据、文档、页面与脚本）统一采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.zh-hans) 授权，详见 [LICENSE](LICENSE)。禁止未授权的商业使用；商用授权请通过仓库 Issue 联系作者。
+
+> 迁移说明：仓库 `momoheal/studyhard` 创建时 GitHub 自动生成的 Apache-2.0 `LICENSE` 已被本项目历史覆盖为 CC BY-NC 4.0。如后续需要“代码 Apache-2.0 + 数据与文档 CC BY-NC 4.0”的分层授权，可另拆分 `LICENSE-CODE` / `LICENSE-CONTENT`。
 
 ---
 
-*本项目为 fork 自初中版后的小学辅导版，保持相同的技术底座与校验体系，仅内容域替换为沪教版小学数学并新增辅导卡；适合作为家校共育的轻量辅导工具原型。*
+*本项目以初中版为技术底座重做内容域，保持相同的校验与诊断体系，换成沪教版小学数学并新增课本同步辅导卡；适合作为家校共育的轻量辅导工具原型。*
