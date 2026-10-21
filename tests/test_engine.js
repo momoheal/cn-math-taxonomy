@@ -609,11 +609,11 @@ function bfsAncestors(id) {
   return seen;
 }
 
-test('数据可加载：333 个知识点，616 条边；每个正式知识点有诊断题', () => {
+test('数据可加载：169 个知识点，188 条边；每个正式知识点有诊断题', () => {
   assert.strictEqual(topics.length, RG.topics.length);
   assert.ok(formal.every((t) => E.isTestable(RG, t.id)));
   assert.ok(topics.filter((t) => t.external).every((t) => !E.isTestable(RG, t.id)));
-  assert.ok(stdFile.items.length > 100);
+  assert.ok(stdFile.items.length >= 60);
 });
 
 test('真实数据：祖先集合与独立 BFS 一致（全部知识点）', () => {
@@ -633,20 +633,20 @@ test('真实数据：先修子图含外部节点，拓扑序合法（全部目�
   assert.ok(sawExternal);
 });
 
-test('真实数据：cnm_221（配方法）——首问目标；答错后 hard 先修在前', () => {
-  let s = E.createSession(RG, ['cnm_221']);
-  assert.strictEqual(E.nextQuestion(RG, s), 'cnm_221');
-  s = E.applyAnswer(RG, s, 'cnm_221', 'wrong');
-  const prereqs = RG.prereqs.cnm_221;
+test('真实数据：cnm_050（大家来做乘法）——首问目标；答错后 hard 先修在前', () => {
+  let s = E.createSession(RG, ['cnm_050']);
+  assert.strictEqual(E.nextQuestion(RG, s), 'cnm_050');
+  s = E.applyAnswer(RG, s, 'cnm_050', 'wrong');
+  const prereqs = RG.prereqs.cnm_050;
   const firstHard = prereqs.find((p) => p.strength === 'hard').id;
   assert.strictEqual(E.nextQuestion(RG, s), firstHard);
 });
 
 test('真实数据：答对目标即跳过全部祖先', () => {
-  const s = E.applyAnswer(RG, E.createSession(RG, ['cnm_221']), 'cnm_221', 'correct');
+  const s = E.applyAnswer(RG, E.createSession(RG, ['cnm_050']), 'cnm_050', 'correct');
   assert.strictEqual(E.nextQuestion(RG, s), null);
-  const anc = bfsAncestors('cnm_221');
-  assert.ok(anc.size > 30);
+  const anc = bfsAncestors('cnm_050');
+  assert.ok(anc.size > 5);
   anc.forEach((id) => assert.strictEqual(E.statusOf(s, id), 'mastered', id));
 });
 
@@ -706,7 +706,7 @@ test('真实数据：一致的学生 + 无限题量 => 薄弱集合与根因精�
       assert.strictEqual(sum.limitReached, false);
     });
   }
-  assert.ok(cases >= 900);
+  assert.ok(cases >= 400);
 });
 
 test('真实数据：题量上限（8/12/20）永远不被突破，且仍满足根因/路径定义', () => {
@@ -737,16 +737,20 @@ test('真实数据：题量上限（8/12/20）永远不被突破，且仍满足�
 
 test('真实数据：什么都不会的学生，在上限处停下，未测节点被标出', () => {
   const none = new Set();
-  const { s, asked } = simulate(['cnm_221'], none, 12);
-  assert.strictEqual(asked.length, 12);
+  const { s, asked } = simulate(['cnm_050'], none, 12);
+  assert.ok(asked.length > 0 && asked.length <= 12);
   const sum = E.summarize(RG, s);
-  assert.strictEqual(sum.limitReached, true);
-  assert.ok(sum.untested.length > 0);
   assert.ok(sum.roots.length >= 1);
+  if (asked.length === 12) {
+    assert.strictEqual(sum.limitReached, true);
+    assert.ok(sum.untested.length > 0);
+  } else {
+    assert.strictEqual(sum.finished, true);
+  }
 });
 
 test('真实数据：整章作为目标——会的学生只需问“最末端”的目标', () => {
-  const chapter = formal.filter((t) => t.chapter.startsWith('七上 第一章 '));
+  const chapter = formal.filter((t) => t.chapter.startsWith('一年级上 第三单元 '));
   const ids = chapter.map((t) => t.id);
   assert.ok(ids.length >= 5);
   const known = new Set(topics.map((t) => t.id));
@@ -763,20 +767,20 @@ test('真实数据：整章作为目标——会的学生只需问“最末端�
 
 test('真实数据：replay 与 JSON 往返得到相同会话', () => {
   const known = makeStudent(rng(3), 0.1);
-  const { s } = simulate(['cnm_232'], known, 12);
-  const r = E.replay(RG, ['cnm_232'], s.answers, { limit: 12 });
+  const { s } = simulate(['cnm_050'], known, 12);
+  const r = E.replay(RG, ['cnm_050'], s.answers, { limit: 12 });
   assert.deepStrictEqual(r, s);
   assert.deepStrictEqual(E.replay(RG, JSON.parse(JSON.stringify(s.targets)), JSON.parse(JSON.stringify(s.answers)), { limit: 12 }), s);
 });
 
 test('真实数据：路径图布局——所有边方向一致，节点不丢', () => {
-  const { s } = simulate(['cnm_232'], new Set(), 12);
+  const { s } = simulate(['cnm_050'], new Set(), 12);
   const sum = E.summarize(RG, s);
   const lay = E.layout(RG, s, sum);
   const layer = Object.fromEntries(lay.nodes.map((n) => [n.id, n.layer]));
   lay.edges.forEach((e) => assert.ok(layer[e.from] < layer[e.to]));
   sum.path.forEach((p) => assert.ok(layer[p.id] !== undefined));
-  assert.ok(layer.cnm_232 === lay.layers - 1);
+  assert.ok(layer.cnm_050 === lay.layers - 1);
 });
 
 test('真实数据：诊断题答案能被自己的判题器接受（判对率检查）', () => {
@@ -854,7 +858,7 @@ test('题库：numeric 题的 answer 能被解析为数（整数/小数/分数/�
     parts.forEach((x) => assert.ok(NUM_RE.test(x), q.id + ' answer=' + q.answer));
     if (q.unordered) assert.ok(parts.length > 1, q.id + ' unordered 但只有一个答案');
   });
-  assert.ok(n > 500);
+  assert.ok(n > 200);
 });
 
 test('题库：q1 由 diagnostic_question 迁移（题干以原题开头，或标注了 fixed_from_source）', () => {
@@ -933,7 +937,7 @@ test('带题库：一致的学生 + 无限题量 => 薄弱集合与根因精确�
       assert.strictEqual(sum.finished, true);
     });
   }
-  assert.ok(cases >= 900);
+  assert.ok(cases >= 400);
 });
 
 test('带题库：任何一个知识点“第一题错、第二题对” => 不稳、只问 2 题、不回溯先修、进学习路径', () => {
@@ -950,7 +954,7 @@ test('带题库：任何一个知识点“第一题错、第二题对” => 不�
     assert.strictEqual(sum.path[0].status, 'shaky');
     if (RGQ.prereqs[t.id].length) withPrereq++;
   });
-  assert.ok(withPrereq > 200);
+  assert.ok(withPrereq > 10);
 });
 
 test('带题库：混合学生（会 / 不稳 / 不会）——每个点最多 2 题，记录的状态与学生一致', () => {
@@ -997,21 +1001,21 @@ test('带题库：题量上限（8/16/30）按题计、永不突破；未复测�
 
 test('带题库：种子固定 => 整个诊断的出题序列确定；换种子序列会变；重放一致', () => {
   const known = new Set(); // 什么都不会：两题都错，序列最长，选题的随机性最明显
-  const a = simulateBank(['cnm_232'], known, new Set(), 16, 'fixed');
-  const b = simulateBank(['cnm_232'], known, new Set(), 16, 'fixed');
+  const a = simulateBank(['cnm_050'], known, new Set(), 16, 'fixed');
+  const b = simulateBank(['cnm_050'], known, new Set(), 16, 'fixed');
   assert.deepStrictEqual(a.s.answers.map((x) => x.qid), b.s.answers.map((x) => x.qid));
   const qs = new Set();
-  for (let i = 0; i < 30; i++) qs.add(simulateBank(['cnm_232'], known, new Set(), 16, 'seed' + i).s.answers.map((x) => x.qid).join());
+  for (let i = 0; i < 30; i++) qs.add(simulateBank(['cnm_050'], known, new Set(), 16, 'seed' + i).s.answers.map((x) => x.qid).join());
   assert.ok(qs.size > 3);
-  const r = E.replay(RGQ, ['cnm_232'], a.s.answers, { limit: 16, seed: 'fixed' });
+  const r = E.replay(RGQ, ['cnm_050'], a.s.answers, { limit: 16, seed: 'fixed' });
   assert.deepStrictEqual(r, a.s);
 });
 
 test('带题库：重测时避开已出过的题（avoid 里的题尽量不再出）', () => {
   const known = makeStudent(rng(8), 0.1);
-  const first = simulateBank(['cnm_232'], known, new Set(), 16, 'one');
+  const first = simulateBank(['cnm_050'], known, new Set(), 16, 'one');
   const seen = first.s.answers.map((x) => x.qid);
-  let s = E.createSession(RGQ, ['cnm_232'], { limit: 16, seed: 'two', avoid: seen });
+  let s = E.createSession(RGQ, ['cnm_050'], { limit: 16, seed: 'two', avoid: seen });
   let repeats = 0, total = 0;
   for (let guard = 0; guard < 100; guard++) {
     const it = E.nextItem(RGQ, s);
