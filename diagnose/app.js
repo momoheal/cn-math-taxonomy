@@ -6,7 +6,7 @@
   const LS_SETTINGS = 'cnmDiagnose.settings.v2';
   const LS_SEEN = 'cnmDiagnose.seen.v1';
   const LIMIT_MIN = 8, LIMIT_MAX = 30;
-  const VOLUMES = [['七上', '七年级上册'], ['七下', '七年级下册'], ['八上', '八年级上册'], ['八下', '八年级下册'], ['九上', '九年级上册'], ['九下', '九年级下册']];
+  const VOLUMES = [['一年级上', '一年级上册'], ['一年级下', '一年级下册'], ['二年级上', '二年级上册'], ['二年级下', '二年级下册'], ['三年级上', '三年级上册'], ['三年级下', '三年级下册'], ['四年级上', '四年级上册'], ['四年级下', '四年级下册'], ['五年级上', '五年级上册'], ['五年级下', '五年级下册']];
   const RESULT_LABEL = { correct: '对', wrong: '错', skip: '不会' };
   const STATUS_LABEL = { mastered: '已掌握', shaky: '不稳', weak: '薄弱', unknown: '未测' };
   const DIFF_LABEL = { basic: '基础', standard: '标准', advanced: '提高' };
@@ -256,7 +256,7 @@
       if (!chapters.length) return;
       const count = chapters.reduce(function (n, c) { return n + c.rows.length; }, 0);
       shown += count;
-      const det = h('details', { class: 'vol', open: !!q || vv[0] === '七上' },
+      const det = h('details', { class: 'vol', open: !!q || vv[0] === '一年级上' },
         h('summary', null, vv[1] + '（' + count + ' 个知识点）'));
       chapters.forEach(function (c) {
         const ch = c.ch;
@@ -417,7 +417,7 @@
   function standardsBlock(id) {
     const t = D.graph.byId[id];
     const list = t.standards || [];
-    if (!list.length) return h('div', { class: 'muted small', text: t.external ? '小学阶段知识点，未对应第四学段课标条目。' : '没有对应的课标条目。' });
+    if (!list.length) return h('div', { class: 'muted small', text: t.external ? '学前先备知识点，未对应小学课标条目。' : '没有对应的课标条目。' });
     return h('div', null, h('b', null, '课标条目：'), list.map(function (sd) {
       const item = D.stdById[sd.id];
       return h('div', { class: 'std' },
@@ -430,8 +430,12 @@
   function topicBody(id, extra) {
     const t = D.graph.byId[id];
     const body = h('div', { class: 'body' });
-    body.append(h('div', { class: 'muted' }, (t.external ? '小学先修知识点（无诊断题）' : t.chapter) + (t.domain ? ' · ' + t.domain : '')));
+    body.append(h('div', { class: 'muted' }, (t.external ? '学前先备知识点（无诊断题）' : t.chapter) + (t.domain ? ' · ' + t.domain : '')));
     body.append(h('div', { text: t.description }));
+    if (!t.external) {
+      body.append(h('p', { class: 'no-print' },
+        h('a', { href: '../index.html#' + id, target: '_blank', rel: 'noopener' }, '查看同步辅导卡（要点·例题·错因·家长话术）→')));
+    }
     if (t.mastery_criteria && t.mastery_criteria.length) {
       body.append(h('div', null, h('b', null, '掌握标准：'), h('ul', null, t.mastery_criteria.map(function (m) { return h('li', { text: m }); }))));
     }
@@ -443,7 +447,7 @@
   function topicItem(id, tags, extra) {
     const t = D.graph.byId[id];
     return h('details', { class: 'topic' },
-      h('summary', null, tags, h('span', { text: t.name }), ' ', h('span', { class: 'muted small', text: t.external ? '小学' : t.chapter })),
+      h('summary', null, tags, h('span', { text: t.name }), ' ', h('span', { class: 'muted small', text: t.external ? '学前' : t.chapter })),
       topicBody(id, extra));
   }
 
@@ -454,7 +458,7 @@
     if (targetSet.has(id)) out.push(tag('target', '目标'));
     if (rootSet.has(id)) out.push(tag('root', '根因'));
     out.push(tag(st, STATUS_LABEL[st]));
-    if (D.graph.byId[id].external) out.push(tag('ext', '小学'));
+    if (D.graph.byId[id].external) out.push(tag('ext', '学前'));
     return out;
   }
 
@@ -498,7 +502,7 @@
       sum.roots.length ? sum.roots.map(function (r) {
         const notes = h('div');
         if (r.pendingPrereqs.length) notes.append(h('div', { class: 'notice', text: '它的先修「' + r.pendingPrereqs.map(nameOf).join('」「') + '」没来得及测（题量用完），真正的根因可能更靠前。' }));
-        if (r.externalPrereqs.length) notes.append(h('div', { class: 'muted small', text: '小学先修（无诊断题，未测）：' + r.externalPrereqs.map(nameOf).join('、') }));
+        if (r.externalPrereqs.length) notes.append(h('div', { class: 'muted small', text: '学前先备（无诊断题，未测）：' + r.externalPrereqs.map(nameOf).join('、') }));
         return topicItem(r.id, statusTags(r.id, rootSet, targetSet), notes);
       }) : h('p', { text: targetsMastered ? '没有。' : '暂未发现。' })));
 
@@ -526,12 +530,12 @@
       h('summary', null, h('b', null, '已掌握的知识点（' + sum.mastered.length + '）')),
       sum.mastered.map(function (id) {
         const src = session.status[id].src === 'direct' ? '答对' : '由后续知识点答对推断';
-        return topicItem(id, [tag('mastered', src)].concat(D.graph.byId[id].external ? [tag('ext', '小学')] : []));
+        return topicItem(id, [tag('mastered', src)].concat(D.graph.byId[id].external ? [tag('ext', '学前')] : []));
       })));
 
     page.append(h('details', { class: 'card', id: 'untested' },
       h('summary', null, h('b', null, '未测的知识点（' + sum.untested.length + '）')),
-      h('p', { class: 'muted small' }, '小学外部节点没有诊断题，不出题；其余是题量用完或不必再测而没测到的点。'),
+      h('p', { class: 'muted small' }, '学前外部节点没有诊断题，不出题；其余是题量用完或不必再测而没测到的点。'),
       sum.untested.map(function (id) { return topicItem(id, statusTags(id, rootSet, targetSet)); })));
 
     page.append(standardsCard(sum));
@@ -551,7 +555,7 @@
     const keys = Object.keys(by).sort();
     return h('div', { class: 'card', id: 'standards' },
       h('h2', { text: '相关课标条目' }),
-      h('p', { class: 'muted small' }, '目标与学习路径上的知识点对应的《义务教育数学课程标准（2022年版）》第四学段内容要求（映射由 AI 生成，未经专家审核）。'),
+      h('p', { class: 'muted small' }, '目标与学习路径上的知识点对应的《义务教育数学课程标准（2022年版）》小学段（第一至第三学段）内容要求（映射由 AI 生成，未经专家审核）。'),
       keys.length ? keys.map(function (k) {
         const item = D.stdById[k];
         return h('div', { class: 'std' }, h('code', { text: k }),
@@ -632,7 +636,7 @@
       (D.graph.byId[p.id].standards || []).forEach(function (sd) { stdIds.add(sd.id); });
     });
     const out = {
-      tool: 'cn-math-taxonomy/diagnose', version: 2, generatedAt: new Date().toISOString(),
+      tool: 'studyhard/diagnose', version: 2, generatedAt: new Date().toISOString(),
       note: '自动判题是近似的，以参考答案为准；数据为 AI 生成的草稿。',
       label: sessionMeta.label,
       targets: session.targets.map(brief),
@@ -690,7 +694,7 @@
       VOLUMES.forEach(function (vv) {
         ((D.tree[vv[0]] || {}).chapters || []).forEach(function (ch) { if (ch.key === c.trim()) hit.push(ch); });
       });
-      if (!hit.length) throw new Error('URL 参数 chapter 没有匹配的章节：' + c + '（格式如 “七上 第一章”）');
+      if (!hit.length) throw new Error('URL 参数 chapter 没有匹配的章节：' + c + '（格式如 “一年级上 第三单元”）');
       return { ids: hit[0].topics.map(function (x) { return x.t.id; }), label: hit[0].volume + ' ' + hit[0].label + '（整章）' };
     }
     return null;

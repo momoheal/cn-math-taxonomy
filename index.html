@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>中国初中数学知识图谱（七—九年级）· 草稿</title>
+<title>沪教版小学数学知识图谱（1-5年级·五四学制）· 辅导版</title>
 <style>
   :root { --bg:#f6f7f9; --panel:#fff; --line:#e1e4e8; --text:#1f2933; --muted:#6b7785; --accent:#2563eb;
           --hard:#c2410c; --soft:#6b7785; --ext:#7c3aed; }
@@ -37,6 +37,7 @@
   .tags { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0; }
   .tag { font-size:12px; padding:1px 8px; border-radius:10px; background:#eef2f7; color:#334155; }
   .tag.ext { background:#ede9fe; color:var(--ext); }
+  .card .tool-link { margin-left:0; display:inline-block; margin-top:6px; }
   .badge { font-size:11px; padding:0 6px; border-radius:8px; margin-right:6px; color:#fff; vertical-align:1px; }
   .badge.hard { background:var(--hard); } .badge.soft { background:var(--soft); }
   ul.plain { margin:4px 0; padding-left:20px; }
@@ -67,8 +68,8 @@
 </head>
 <body>
 <header>
-  <h1>中国初中数学知识图谱（七—九年级）</h1>
-  <span class="note">AI 生成的初稿，未经教师审核；先修关系尤其需要一线教师审核。人教版 2024 审定版章节顺序。</span>
+  <h1>沪教版小学数学知识图谱（1-5年级·五四学制）</h1>
+  <span class="note">AI 生成的初稿，未经教师审核；严格对齐沪教版课本目录（一年级上/下为2024审定版，二至五年级为现行试用本），先修关系与辅导内容需一线教师审核。</span>
   <a class="tool-link" href="diagnose/">诊断小工具 →</a>
 </header>
 <div id="app">
@@ -79,15 +80,16 @@
         <select id="fDomain"><option value="">全部学科</option></select>
         <select id="fGrade">
           <option value="">全部年级</option>
-          <option value="7上">七年级上</option><option value="7下">七年级下</option>
-          <option value="8上">八年级上</option><option value="8下">八年级下</option>
-          <option value="9上">九年级上</option><option value="9下">九年级下</option>
-          <option value="7">七年级（全）</option><option value="8">八年级（全）</option><option value="9">九年级（全）</option>
+          <option value="1上">一年级上</option><option value="1下">一年级下</option>
+          <option value="2上">二年级上</option><option value="2下">二年级下</option>
+          <option value="3上">三年级上</option><option value="3下">三年级下</option>
+          <option value="4上">四年级上</option><option value="4下">四年级下</option>
+          <option value="5上">五年级上</option><option value="5下">五年级下</option>
         </select>
       </div>
       <div class="row">
         <select id="fType"><option value="">全部类型</option></select>
-        <label class="chk"><input type="checkbox" id="fExt"> 含小学先修</label>
+        <label class="chk"><input type="checkbox" id="fExt"> 含学前先备</label>
       </div>
       <div id="count"></div>
     </div>
@@ -99,7 +101,7 @@
 <script>
 "use strict";
 const TYPE_ZH = {conceptual:"概念理解", procedural:"程序性技能", reasoning:"推理证明", application:"应用", modeling:"建模"};
-const GRADE_ZH = {7:"七", 8:"八", 9:"九"};
+const GRADE_ZH = {1:"一", 2:"二", 3:"三", 4:"四", 5:"五"};
 const $ = s => document.querySelector(s);
 const el = (tag, attrs, ...kids) => {
   const e = document.createElement(tag);
@@ -113,7 +115,7 @@ const el = (tag, attrs, ...kids) => {
 
 let topics = [], deps = [], byId = new Map(), pre = new Map(), post = new Map(), selected = null;
 
-function gradeKey(t) { return t.external ? "小学" : GRADE_ZH[t.grade] + t.semester; }
+function gradeKey(t) { return t.external ? "学前" : GRADE_ZH[t.grade] + "年级" + t.semester; }
 
 async function load() {
   try {
@@ -168,11 +170,11 @@ function renderList() {
     const key = gradeKey(t);
     if (key !== last) {
       last = key;
-      ul.append(el("li", {class:"grp", text: t.external ? "小学先修（外部节点）" : GRADE_ZH[t.grade] + "年级" + t.semester + "册"}));
+      ul.append(el("li", {class:"grp", text: t.external ? "学前先备（外部节点）" : GRADE_ZH[t.grade] + "年级" + t.semester + "册"}));
     }
     const li = el("li", {class:"item" + (t.id === selected ? " sel" : ""), "data-id":t.id, onclick:() => select(t.id, true)},
       el("span", {class:"nm", text:t.name}),
-      el("span", {class:"meta", text: t.external ? t.domain : t.domain + " · " + (t.chapter || "").replace(/^.. /, "")}));
+      el("span", {class:"meta", text: t.external ? t.domain : t.domain + " · " + (t.chapter || "").replace(/^\S+\s+/, "")}));
     ul.append(li);
   }
   $("#count").textContent = "显示 " + items.length + " / " + topics.length;
@@ -198,7 +200,7 @@ function renderDetail(t) {
     el("div", {class:"tags"},
       el("span", {class:"tag" + (t.external ? " ext" : ""), text:t.id}),
       el("span", {class:"tag", text:t.domain}),
-      t.external ? el("span", {class:"tag ext", text:"小学先修（外部节点）"})
+      t.external ? el("span", {class:"tag ext", text:"学前先备（外部节点）"})
                  : [el("span", {class:"tag", text:GRADE_ZH[t.grade] + "年级" + t.semester}),
                     el("span", {class:"tag", text:TYPE_ZH[t.type] || t.type}),
                     el("span", {class:"tag", text:t.chapter})]),
@@ -210,6 +212,25 @@ function renderDetail(t) {
     parts.push(el("div", {class:"card"}, el("h2", {text:"诊断题"}),
       el("div", {class:"q"}, el("div", {text:t.diagnostic_question.question}),
         el("details", {class:"ans"}, el("summary", {text:"查看答案"}), el("div", {text:t.diagnostic_question.answer})))));
+    if (t.tutoring) {
+      const tut = t.tutoring;
+      parts.push(el("div", {class:"card"}, el("h2", {text:"辅导要点（课本同步精讲）"}),
+        el("ul", {class:"plain"}, tut.key_points.map(c => el("li", {text:c}))),
+        el("h2", {text:"例题精讲"}),
+        el("div", {class:"q"}, el("div", {text:"题目：" + tut.worked_example.problem}),
+          el("div", {text:"解法：" + tut.worked_example.steps.join(" → ")}),
+          el("details", {class:"ans"}, el("summary", {text:"查看答案"}), el("div", {text:tut.worked_example.answer}))),
+        el("h2", {text:"常见错误"}),
+        el("ul", {class:"plain"}, tut.common_mistakes.map(c => el("li", {text:c}))),
+        el("p", {class:"muted", text:"辅导建议：" + tut.coaching_tip})
+      ));
+    }
+    // 按章同步练习入口
+    parts.push(el("div", {class:"card"}, el("h2", {text:"同步练习与诊断"}),
+      el("p", {text:"想检测是否掌握“" + t.name + "”？试试诊断小工具："}),
+      el("a", {class:"tool-link", href:"diagnose/?target=" + t.id, text:"去做 4 题小测 →"}),
+      el("span", {class:"muted", text:"  每知识点4题配套题库，诊断后可回溯先修并查看辅导要点。"})
+    ));
   }
   parts.push(prereqCard(t), postCard(t));
   m.replaceChildren(...parts);
@@ -248,7 +269,7 @@ function tree(rootId) {
     for (const p of pre.get(id)) {
       const n = byId.get(p.id), li = el("li");
       li.append(badge(p.strength), link(p.id),
-        el("span", {class:"seen", text:" " + (n.external ? "小学" : gradeKey(n))}),
+        el("span", {class:"seen", text:" " + (n.external ? "学前" : gradeKey(n))}),
         el("span", {class:"why", text:"— " + p.reason}));
       if (pre.get(p.id).length) {
         if (expanded.has(p.id)) li.append(el("span", {class:"seen", text:"  （↑ 已在上方展开）"}));
@@ -275,7 +296,7 @@ function layers(rootId) {
       el("div", {class:"chips"}, ids.map(id => {
         const c = el("span", {class:"chip" + (byId.get(id).external ? " ext" : ""), onclick:() => select(id, true)},
           direct.has(id) ? badge(direct.get(id)) : null, byId.get(id).name,
-          el("span", {class:"seen", text:" " + (byId.get(id).external ? "小学" : gradeKey(byId.get(id)))}));
+          el("span", {class:"seen", text:" " + (byId.get(id).external ? "学前" : gradeKey(byId.get(id)))}));
         return c;
       }))));
   }

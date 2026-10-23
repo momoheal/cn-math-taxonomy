@@ -95,11 +95,11 @@ def check_topics(topics):
         if t.get("domain") not in DOMAINS:
             err("%s domain 取值非法：%r" % (where, t.get("domain")))
         if ext:
-            if t.get("grade") != "小学":
-                err("%s 外部节点 grade 必须为 \"小学\"" % where)
+            if t.get("grade") not in ("学前", "小学"):
+                err("%s 外部节点 grade 必须为 \"学前\" 或 \"小学\"" % where)
             continue
-        if t.get("grade") not in (7, 8, 9):
-            err("%s grade 必须是 7/8/9" % where)
+        if t.get("grade") not in (1, 2, 3, 4, 5):
+            err("%s grade 必须是 1/2/3/4/5" % where)
         if t.get("semester") not in ("上", "下"):
             err("%s semester 必须是 上/下" % where)
         if t.get("type") not in TYPES:
@@ -196,14 +196,14 @@ def check_graph(ids, prereqs, dependents):
 def report(ids, prereqs, dependents, n_hard, n_soft):
     core = [t for t in ids.values() if not t.get("external")]
     ext = [t for t in ids.values() if t.get("external")]
-    print("知识点总数：%d（正式 %d，小学外部 %d）" % (len(ids), len(core), len(ext)))
+    print("知识点总数：%d（正式 %d，学前外部 %d）" % (len(ids), len(core), len(ext)))
     print("\n按 domain（正式知识点）：")
     for k, v in sorted(Counter(t["domain"] for t in core).items(), key=lambda x: -x[1]):
         print("  %-8s %d" % (k, v))
     print("\n按 grade+semester（正式知识点）：")
-    c = Counter("%s%s" % ({7: "七", 8: "八", 9: "九"}.get(t["grade"], t["grade"]), t["semester"]) for t in core)
-    for k in ["七上", "七下", "八上", "八下", "九上", "九下"]:
-        print("  %-4s %d" % (k, c.get(k, 0)))
+    c = Counter("%s%s" % ({1: "一年级", 2: "二年级", 3: "三年级", 4: "四年级", 5: "五年级"}.get(t["grade"], t["grade"]), t["semester"]) for t in core)
+    for k in ["一年级上", "一年级下", "二年级上", "二年级下", "三年级上", "三年级下", "四年级上", "四年级下", "五年级上", "五年级下"]:
+        print("  %-6s %d" % (k, c.get(k, 0)))
     print("\n按 type（正式知识点）：")
     for k, v in sorted(Counter(t["type"] for t in core).items(), key=lambda x: -x[1]):
         print("  %-12s %d" % (k, v))
